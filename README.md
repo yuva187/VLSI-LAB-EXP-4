@@ -1,13 +1,11 @@
 # VLSI-LAB-EXP-4
-SIMULATION AND IMPLEMENTATION OF SEQUENTIAL LOGIC CIRCUITS
+# SIMULATION AND IMPLEMENTATION OF SEQUENTIAL LOGIC CIRCUITS
 
-AIM: 
- To simulate and synthesis SR, JK, T, D - FLIPFLOP, COUNTER DESIGN using Xilinx ISE.
+# AIM: 
+To simulate and synthesis SR, JK, T, D - FLIPFLOP, COUNTER DESIGN using VIVADO
 
-APPARATUS REQUIRED:
-
-Xilinx 14.7
-Spartan6 FPGA
+# APPARATUS REQUIRED:
+VIVADO 2023.2
 
 **LOGIC DIAGRAM**
 
@@ -36,7 +34,7 @@ COUNTER
 
 
   
-PROCEDURE:
+# PROCEDURE:
 STEP:1  Start  the Xilinx navigator, Select and Name the New project.
 STEP:2  Select the device family, device, package and speed.       
 STEP:3  Select new source in the New Project and select Verilog Module as the Source type.                       
@@ -49,13 +47,121 @@ STEP:9  In the Design Object List Window, enter the pin location for each pin in
 STEP:10 Double click on the Implement Design and double click on the Generate Programming File to create a bitstream of the design.(.v) file is converted into .bit file here.
 STEP:11  On the board, by giving required input, the LEDs starts to glow light, indicating the output.
 
-VERILOG CODE
+# VERILOG CODE:
 
-   <<< TYPE YOUR VERILOG CODE >>>
+# SR FLIP FLOP:
+end module SRFF(s, r, clk, rst, q);
+input s, r, clk, rst;
+output reg q;
+always@(posedge clk)
+begin
+if(rst==1)
+q=1'b0;
+else
+begin
+case({s, r})
+2'b00:q=q;
+2'b01:q=1'b0;
+2'b10:q=1'b1;
+2'b11:q=1'bx;
+end
+end
+endmodule
 
-OUTPUT WAVEFORM
- <<< PASTE YOUR OUTPUT WAVEFORM >>>
+# JK FLIP FLOP:
+module JKFF(j, k, clk, rst, q);
+input j, k, clk, rst;
+output reg q;
+always@(posedge clk)
+begin
+if(rst==1)
+q=1'b0;
+else
+begin
+case({j, k})
+2'b00:q=q;
+2'b01:q=1'b0;
+2'b10:q=1'b1;
+2'b11:q=~q;
+endcase
+end
+end
+endmodule
 
-RESULT
+# T FLIP FLOP:
+module TFF(clk, rst, t, q);
+input t, clk, rst;
+output reg q;
+always@(posedge clk)
+begin
+if(rst==1)
+q=1'b0;
+else
+begin
+if(t==0)
+q=q;
+else
+q=~q;
+end
+end
+endmodule
+
+# D FLIP FLOP:
+module DFF(d, q, clk, rst);
+input d, clk, rst;
+output reg q;
+always@(posedge clk)
+begin
+if(rst==1)
+q=1'b0;
+else
+q=d;
+end
+endmodule
+
+# COUNTER:
+module Counter(clk,rst,mode,y);
+input mode,clk,rst;
+output reg [3:0]y;
+always@(posedge clk)
+begin
+if(rst==1)
+y=8'b0;
+else
+begin
+if(mode==1)
+y=y+1'b1;
+else
+y=y-1'b1;
+end
+end
+endmodule
+
+
+# OUTPUT WAVEFORM:
+
+# SR FLIP FLOP:
+
+![image](https://github.com/yuva187/VLSI-LAB-EXP-4/assets/161815961/e8e3bcaa-1f8e-4e57-b5dc-ae99c93d5210)
+
+# JK FLIP FLOP:
+
+![image](https://github.com/yuva187/VLSI-LAB-EXP-4/assets/161815961/b361f4fc-8e7a-4c1d-be8f-819000e2b679)
+
+# T FLIP FLOP:
+
+![image](https://github.com/yuva187/VLSI-LAB-EXP-4/assets/161815961/ed8a35fc-6f25-4aae-a476-be1a04c4b811)
+
+# D FLIP FLOP:
+
+![image](https://github.com/yuva187/VLSI-LAB-EXP-4/assets/161815961/81ef5049-4082-4d5f-b409-a09669cc5d1a)
+
+# COUNTER:
+
+![image](https://github.com/yuva187/VLSI-LAB-EXP-4/assets/161815961/bb2d3d8a-2d98-42f4-8394-ced29d1b7c84)
+
+
+# RESULT:
+Thus, The FlipFlops and Counter are simulated and verified Successfully
 
 
