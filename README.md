@@ -51,90 +51,163 @@ STEP:11  On the board, by giving required input, the LEDs starts to glow light, 
 
 # SR FLIP FLOP:
 end module SRFF(s, r, clk, rst, q);
+
 input s, r, clk, rst;
+
 output reg q;
+
 always@(posedge clk)
+
 begin
+
 if(rst==1)
+
 q=1'b0;
+
 else
+
 begin
+
 case({s, r})
+
 2'b00:q=q;
+
 2'b01:q=1'b0;
+
 2'b10:q=1'b1;
+
 2'b11:q=1'bx;
+
 end
+
 end
+
 endmodule
 
 # JK FLIP FLOP:
 module JKFF(j, k, clk, rst, q);
+
 input j, k, clk, rst;
+
 output reg q;
+
 always@(posedge clk)
+
 begin
+
 if(rst==1)
+
 q=1'b0;
+
 else
+
 begin
+
 case({j, k})
+
 2'b00:q=q;
+
 2'b01:q=1'b0;
+
 2'b10:q=1'b1;
+
 2'b11:q=~q;
+
 endcase
+
 end
+
 end
+
 endmodule
 
 # T FLIP FLOP:
 module TFF(clk, rst, t, q);
+
 input t, clk, rst;
+
 output reg q;
+
 always@(posedge clk)
+
 begin
+
 if(rst==1)
+
 q=1'b0;
+
 else
+
 begin
+
 if(t==0)
+
 q=q;
+
 else
+
 q=~q;
+
 end
+
 end
+
 endmodule
 
 # D FLIP FLOP:
 module DFF(d, q, clk, rst);
+
 input d, clk, rst;
+
 output reg q;
+
 always@(posedge clk)
+
 begin
+
 if(rst==1)
+
 q=1'b0;
+
 else
+
 q=d;
+
 end
+
 endmodule
 
 # COUNTER:
 module Counter(clk,rst,mode,y);
+
 input mode,clk,rst;
+
 output reg [3:0]y;
+
 always@(posedge clk)
+
 begin
+
 if(rst==1)
+
 y=8'b0;
+
 else
+
 begin
+
 if(mode==1)
+
 y=y+1'b1;
+
 else
+
 y=y-1'b1;
+
 end
+
 end
+
 endmodule
 
 
