@@ -177,38 +177,45 @@ end
 
 endmodule
 
-# COUNTER:
-module Counter(clk,rst,mode,y);
+# mod 10  COUNTER:
+module mod_10(clk,rst,out);
 
-input mode,clk,rst;
+input clk,rst;
 
-output reg [3:0]y;
+output reg[3:0]out;
 
 always@(posedge clk)
 
 begin
 
-if(rst==1)
+if(rst==1|out==9)
 
-y=8'b0;
-
-else
-
-begin
-
-if(mode==1)
-
-y=y+1'b1;
+out=4'b0;
 
 else
 
-y=y-1'b1;
-
-end
+out=out+1;
 
 end
 
 endmodule
+
+# UPDOWN COUNTER:
+module updown_counter(clk,rst,ud,out);
+
+input clk,rst,ud;
+
+output reg[3:0]out;
+
+always@(posedge clk) begin if(rst==1) out=4'b0; else if (ud==1) out=out+1;
+
+else if(ud==0) out=out-1;
+
+end endmodule
+
+
+
+
 
 
 # OUTPUT WAVEFORM:
@@ -229,9 +236,13 @@ endmodule
 
 ![image](https://github.com/yuva187/VLSI-LAB-EXP-4/assets/161815961/81ef5049-4082-4d5f-b409-a09669cc5d1a)
 
-# COUNTER:
+# MOD 10 COUNTER:
 
-![image](https://github.com/yuva187/VLSI-LAB-EXP-4/assets/161815961/bb2d3d8a-2d98-42f4-8394-ced29d1b7c84)
+![image](https://github.com/yuva187/VLSI-LAB-EXP-4/assets/161815961/70a3fb25-6054-4dbe-a0b9-37a50f746157)
+
+# UPDOWN COUNTER:
+![image](https://github.com/yuva187/VLSI-LAB-EXP-4/assets/161815961/e8775b12-1ade-41a0-a750-beac4ebf9e81)
+
 
 
 # RESULT:
